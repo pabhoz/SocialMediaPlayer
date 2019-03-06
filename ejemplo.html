@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo select</title>
+</head>
+
+<body>
+    <select name="userSelect" id="userSelect"></select>
+    <button onclick="getUsers()">traer usuarios</button>
+    <script>
+        var servidor = `http://localhost/usbcali/web-2019I/AudioPlayerServer/users.php?ejecute=`;
+
+        function getUsers() {
+            var config = {
+                method: 'GET',
+                mode: 'cors'
+            };
+
+            fetch(`${servidor}select`, config)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (usuarios) {
+                    let select = document.querySelector("#userSelect");
+                    usuarios.forEach(usuario => {
+                        let option = document.createElement("option");
+                        option.value = usuario.id;
+                        option.innerHTML = usuario.username;
+                        select.appendChild(option);
+                    });
+                    
+                });
+        }
+    </script>
+</body>
+
+</html>

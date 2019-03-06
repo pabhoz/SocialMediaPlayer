@@ -1,0 +1,184 @@
+:root{
+    --lateral-bar-w: 65px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: #313131;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#mediaPlayer{
+    width: 70vw;
+    height: 75vh;
+    background: #171717;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-flow: column;
+    justify-items: stretch;
+    align-items: flex-start;
+    color: white;
+    .mediaContent{
+        flex: 9;
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+        .mainLeftBar{
+            min-width: var(--lateral-bar-w);
+            height: 100%;
+            background-color: #88140c;
+            position: relative;
+            .item{
+                width: 100%;
+                padding: 10px;
+                height: var(--lateral-bar-w);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                i{
+                    font-size: 120%;
+                }
+            }
+            .item:hover, .hover{
+                background-color: #650b05;
+            }
+        }
+        .menu{
+            min-width: 220px;
+            width: 220px;
+            margin-left: -220px;
+            background-color: #2d2d2d;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            .title{
+                border-bottom: 1px solid white;
+                padding: 15px 20px 10px 20px;
+            }
+            .item{
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+            .item:hover{
+                background: rgba(0,0,0,0.2);
+            }
+            .loader{
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                margin-left: 60px;
+                margin-top: 80px;
+                display: none;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .content{
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            margin-left: 8%;
+            .item{
+                width: 200px;
+                height: 200px;
+                border: 1px solid black;
+                margin: 20px 10px;
+                cursor: pointer;
+            }
+            .item.add{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 510%;
+                color: #212221;
+            }
+        }
+        
+    }
+    #controls{
+        flex: 1;
+        background-color: #212221;
+        width: 100%;
+        display: flex;
+        .user{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: var(--lateral-bar-w);
+            height: 100%;
+            background-color: aliceblue;
+            color: black;
+            font-weight: bold;
+            font-size: 150%;
+        }
+        .controlBar{
+            width: 100%;
+            display: flex;
+            padding-left: 10px;
+            .buttons{
+                display: flex;
+                align-items: center;
+                .button{
+                    padding: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .button:hover{
+                    background: #0f100f;
+                }
+            }
+            .volumeControl{
+                margin-left: 10px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+            .progressBar{
+                width: 100%;
+                padding: 0 20px;
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                .bar{
+                    position: relative;
+                    margin-top: -4px;
+                    width: 0%;
+                    height: 3px;
+                    border-bottom: 1px solid rgba(255,255,255,0.4);
+                    background: red;
+                    cursor: pointer;
+                }
+                .barShadow{
+                    width: 100%;
+                    height: 3px;
+                    background-color: rgba(0,0,0,0.2);
+                    cursor: pointer;
+                }
+                .data{
+                    display: flex;
+                    flex-flow: row;
+                    width: 100%;
+                    justify-content: space-between;
+                    font-size: 70%;
+                    padding-top: 6px;
+                }
+            }
+        }
+    }
+}
