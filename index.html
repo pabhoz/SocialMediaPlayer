@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/fontawesome-free-5.7.2-web/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="src/models/MusicPlayer.js"></script>
+    <script src="src/models/MultimediaElement.js"></script>
     <script src="src/app.js"></script>
 </head>
 <body>
@@ -33,6 +34,11 @@
             <div class="content">
                 <div class="item add">
                     <i class="fas fa-plus-circle"></i>
+                </div>
+                <div>
+                    <input id="formTitle" name="title" type="text" placeholder="Title">
+                    <input id="fileLoader" type="file">
+                    <button id="ELBOTON" onclick="noMeBusquenDespues()" disabled>Crear</button>
                 </div>
             </div>
         </div>

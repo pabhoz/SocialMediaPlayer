@@ -1,3 +1,6 @@
+var isLodead = false;
+var elementosMultimedia = [];
+
 var user = {
     id: null,
     email: null,
@@ -52,6 +55,19 @@ window.onload = () => {
     });
 
     let newMusicplayer = new MusicPlayer("Virtualscape", "Concepts", "assets/songs/virtualscape.mp3");
+
+    let fileLoader = document.getElementById("fileLoader");
+    fileLoader.onchange = function(e){
+        console.dir(this);
+        for (let i = 0; i < this.files.length; i++) {
+            let me = new MultimediaElement(this.files[i]);
+            me.loadFileContent().then((r)=>{
+                isLodead = true;
+                document.getElementById("ELBOTON").disabled = false;
+            });
+            elementosMultimedia[i] = me;
+        }
+    }
 }
 
 function initSongs() {
@@ -61,6 +77,10 @@ function initSongs() {
         element.classList.add("item");
         element.innerHTML = user.library[i].title;
         element.dataset.id = user.library[i].title;
+        let audio = document.createElement("audio");
+        audio.src = user.library[i].file;
+        audio.controls = true;
+        element.appendChild(audio);
         content.insertBefore(element, content.firstChild);
     }
 }
@@ -74,4 +94,31 @@ function initPlaylists() {
         element.dataset.id = user.playlist[i].title;
         content.appendChild(element);
     }
+}
+
+function noMeBusquenDespues(){
+    let data = {
+        id: null,
+        title: document.querySelector("#formTitle").value,
+        duration: elementosMultimedia[0].DOMElement.duration,
+        format: elementosMultimedia[0].file.type,
+        file: elementosMultimedia[0].data
+    }
+
+    var params = new FormData();
+	for (const key in data) {
+		params.append(key,data[key]);
+	}
+
+	var config = { 
+		method: 'POST', 
+		mode: 'cors',
+		headers: {
+			'Access-Control-Allow-Origin':'*'
+		},
+		body: params
+    };
+    fetch("http://localhost/usbcali/web-2019I/AudioPlayerServer/songs.php?ejecute=create",config).then( (r) => {
+        alert(r);
+    });
 }
